@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      function displayInterestValue(interestValue) {
+        document.getElementById("lblRange").innerText = interestValue + "%";
+      }
+      function compute() {
+        if (!document.getElementById("txtAmount").value) {
+          alert("Please enter amount");
+          document.getElementById("txtAmount").focus();
+          return;
+        }
+        document.getElementById("lblDeposit").innerText =
+          document.getElementById("txtAmount").value;
+        document.getElementById("lblAtAnInerestRate").innerText =
+          document.getElementById("lblRange").innerText;
+
+        var amount = parseInt(document.getElementById("txtAmount").value);
+        var rate = parseFloat(document.getElementById("lblRange").innerText);
+        var years = parseInt(document.getElementById("selectYear").value);
+
+        var total = (amount * years * rate) / 100;
+        document.getElementById("lblYouWillReceiveAmount").innerText = total;
+        var currentDate = new Date();
+        document.getElementById("lblInTheYear").innerText =
+          currentDate.getFullYear() + years;
+      }
+    </script>
+    <tilte>Simple interest calculator</tilte>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Simple Interest Calculator</h1>
+      <div class="divSubcontainer">
+        <div>
+          <span class="gapAmount">Amount</span
+          ><span
+            ><input class="txtPrincipal" type="number" id="txtAmount" />
+          </span>
+        </div>
+        <div>
+          <span class="gapInterestRate">Interest Rate</span
+          ><span
+            ><input
+              class="rangeRate"
+              type="range"
+              id="rate"
+              min="0.5"
+              max="25"
+              value="10.25"
+              onchange="displayInterestValue(this.value);"
+            />
+            <label id="lblRange" for="rangDisplay">10.25%</label>
+          </span>
+        </div>
+        <div class="NoOfYear">
+          <span class="gapNoOfYear"> No. of Years</span
+          ><span>
+            <select id="selectYear" name="selectYear">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </span>
+        </div>
+        <br />
+        <button onclick="compute()">Compute Interest</button>
+        <div class="divDeposit">
+          <span>If you deposit </span> <label id="lblDeposit"></label>
+        </div>
+        <div class="divInterestRateOf">
+          <span>at an interest rate of </span>
+          <label id="lblAtAnInerestRate"></label>
+        </div>
+        <div class="divYouWillRecive">
+          <span>You will receive and amount of </span>
+          <label id="lblYouWillReceiveAmount"></label>
+        </div>
+        <div class="divInTheYear">
+          <span>In the year </span> <label id="lblInTheYear"></label>
+        </div>
+      </div>
+      <div class="lastLine">© Everyone Can Get Rich
+        This Calculator belongs to Vishakha Patil</div>
+    </div>
+  </body>
+</html>
